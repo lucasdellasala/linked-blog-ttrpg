@@ -54,6 +54,7 @@ export default function Post({ post, backlinks }: Props) {
             author={post.author}
             backlinks={backlinks}
             status={statusMapper(post.status?.toString())}
+            image={post.image}
           />
         </Layout>
       )}
@@ -79,7 +80,9 @@ export async function getStaticProps({ params }: Params) {
     'content',
     'ogImage',
     'status',
+    'image',
   ])
+
   const content = await markdownToHtml(post.content || '', slug)
   const linkMapping = await getLinksMapping()
   const backlinks = Object.keys(linkMapping).filter(k => linkMapping[k].includes(post.slug) && k !== post.slug)

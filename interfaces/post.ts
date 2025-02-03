@@ -12,6 +12,11 @@ type PostType = {
   ogImage?: {
     url: string
   }
+  image?: {
+    url: string
+    alt: string
+    type: string
+  }
 }
 
 export default PostType

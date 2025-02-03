@@ -1,6 +1,10 @@
 ---
 title: Update the Publish Settings
 status: Herido
+image:
+ url: "../attachments/faiorath.png"
+ type: "portrait"
+ alt: "Retrato de Faiorath Caledhros"
 ---
 
 There are two things you can modify in the workflow. The publish directory and the blog repository.
