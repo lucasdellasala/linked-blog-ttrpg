@@ -2,7 +2,7 @@
 title: Update the Publish Settings
 status: Herido
 image:
- url: "../attachments/faiorath.png"
+ url: "attachments/faiorath.png"
  type: "portrait"
  alt: "Retrato de Faiorath Caledhros"
 ---

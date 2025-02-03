@@ -3,7 +3,6 @@ import Author from "../../interfaces/author";
 import Backlinks from "../misc/backlinks";
 import PostBody from "./post-body";
 import PostMeta from "./post-meta";
-import Status from "../../interfaces/status";
 
 type Props = {
   title: string;
@@ -50,7 +49,7 @@ function PostSingle({
                   image && <div className="flex justify-center">
                     <img
                       alt={image.alt}
-                      className="h-40 w-auto"
+                      className="h-40 w-auto rounded-full cropped border-2"
                       src={image.url}
                     />
                   </div>
@@ -74,7 +73,7 @@ function PostSingle({
                 </div>
 
                 {/* Sidebar */}
-                <aside className="relative lg:block lg:w-72 lg:ml-20 shrink-0">
+                <aside className="relative pt-8 lg:pt-0 lg:block lg:w-72 lg:ml-20 shrink-0">
                   <div>
                     <h4 className="text-lg font-bold leading-snug tracking-tight mb-4">
                       Backlinks

@@ -26,6 +26,13 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
     if (typeof data[field] !== 'undefined') {
       items[field] = data[field]
     }
+
+    if (field === 'image') {
+      items[field] = {
+        ...data[field],
+        url: formatImageUrl(data[field]?.url)
+      }
+    }
   })
   return items
 }
@@ -34,13 +41,19 @@ function parseFileToObj(pathToObj: string) {
   const fileContents = fs.readFileSync(pathToObj, 'utf8')
   const { data, content } = matter(fileContents)
   data['content'] = content
-
   // modify obj
   if (typeof data['excerpt'] === 'undefined') {
     data['excerpt'] = getMDExcerpt(content, 500);
   }
   if (typeof data['title'] === 'undefined') {
     data['title'] = decodeURI(path.basename(pathToObj, '.md'))
+  }
+  if (typeof data['image'] === 'object') {
+    data['image'] = {
+      url: data['image'].url,
+      alt: data['image'].alt,
+      type: data['image'].type,
+    }
   }
   if (typeof data['date'] === 'object') {
     data['date'] = data['date']?.toISOString()
@@ -106,4 +119,9 @@ export function updateMarkdownLinks(markdown: string, currSlug: string) {
     return m;
   });
   return markdown
+}
+
+function formatImageUrl(url: string): string {
+  if (!url) return url;
+  return `/md_assets%5C${url.replace("/", "%5C")}`
 }
