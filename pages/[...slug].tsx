@@ -7,6 +7,7 @@ import path from 'path'
 import PostSingle from '../components/blog/post-single'
 import Layout from '../components/misc/layout'
 import { NextSeo } from 'next-seo'
+import { HOME_OG_IMAGE_URL } from '../lib/constants'
 
 type Items = {
   title: string,
