@@ -27,7 +27,7 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
       items[field] = data[field]
     }
 
-    if (field === 'image') {
+    if (field === 'image' && data['image']) {
       items[field] = {
         ...data[field],
         url: formatImageUrl(data[field]?.url)
