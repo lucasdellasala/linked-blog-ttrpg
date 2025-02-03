@@ -40,7 +40,7 @@ export default function Post({ post, backlinks }: Props) {
               description,
               type: 'article',
               images: [{
-                url: (post.ogImage?.url) ? post.ogImage.url : "https://fleetingnotes.app/favicon/512.png",
+                url: (post.ogImage?.url) ? post.ogImage.url : HOME_OG_IMAGE_URL,
                 width: (post.ogImage?.url) ? null: 512,
                 height: (post.ogImage?.url) ? null: 512,
                 type: null
