@@ -1,3 +1,9 @@
+body {
+    color: white;
+    background: rgb(17,11,59);
+    background: linear-gradient(225deg, rgba(17,11,59,1) 0%, rgba(54,53,110,1) 25%, rgba(103,38,78,1) 50%, #9A5665 75%,  #CD9FA2 100%);
+}
+
 .internal-link-container > .note-preview {
   @apply hidden absolute w-[350px] left-0 z-50;
   text-align: left !important;
@@ -17,9 +23,9 @@
 .internal-link {
   @apply rounded;
   color: #0969da;
-  background-color: rgb(243 250 251) !important;
+  background-color: rgb(243 250 251);
 }
-
+/*#110B3B, #36356E, #67264E, #9A5665, #CD9FA2*/
 /* Typography */
 .h1 {
     @apply text-4xl font-extrabold leading-tight tracking-tighter;

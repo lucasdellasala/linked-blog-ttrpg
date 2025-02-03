@@ -12,6 +12,11 @@ module.exports = {
         'accent-7': '#333',
         success: '#0070f3',
         cyan: '#79FFE1',
+        'x-main': "#FFF",
+        'x-contrast': "#000",
+        'x-btn-main': '#FFF',
+        'x-btn-contrast': '#000',
+        'x-contrast-shadow': "rgba(0,0,0,0.4)"
       },
       spacing: {
         28: '7rem',
