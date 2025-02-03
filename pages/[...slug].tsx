@@ -25,6 +25,7 @@ export default function Post({ post, backlinks }: Props) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
+
   return (
     <>
       {router.isFallback ? (
@@ -52,6 +53,7 @@ export default function Post({ post, backlinks }: Props) {
             date={post.date}
             author={post.author}
             backlinks={backlinks}
+            status={statusMapper(post.status?.toString())}
           />
         </Layout>
       )}
@@ -76,6 +78,7 @@ export async function getStaticProps({ params }: Params) {
     'author',
     'content',
     'ogImage',
+    'status',
   ])
   const content = await markdownToHtml(post.content || '', slug)
   const linkMapping = await getLinksMapping()
@@ -108,4 +111,14 @@ export async function getStaticPaths() {
     }),
     fallback: false,
   }
+}
+
+export function statusMapper(s: string): string {
+  if (!s) return "";
+  const st = s.toString().toUpperCase()
+  const statusMap: Record<string, string> = {
+    "MUERTO": '💀',
+    "HERIDO": '🤕'
+  }
+  return statusMap[st];
 }

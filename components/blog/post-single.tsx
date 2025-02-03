@@ -3,12 +3,14 @@ import Author from '../../interfaces/author';
 import Backlinks from '../misc/backlinks';
 import PostBody from './post-body';
 import PostMeta from './post-meta';
+import Status from '../../interfaces/status';
 
 type Props = {
   title: string,
   content: string,
   date?: string,
   author?: Author,
+  status?: string,
   backlinks: { [k: string]: {
       title: string,
       excerpt: string,
@@ -20,6 +22,7 @@ function PostSingle({
   title,
   date,
   author,
+  status,
   content,
   backlinks
 }: Props) {
@@ -34,7 +37,7 @@ function PostSingle({
               {/* Article header */}
               <header className="max-w-3xl mx-auto mb-20">
                 {/* Title */}
-                <h1 className="h1 text-center mb-4 text-6xl">{title}</h1>
+                <h1 className="h1 text-center mb-4 text-6xl">{title}{status}</h1>
               </header>
 
               {/* Article content */}
@@ -58,7 +61,6 @@ function PostSingle({
                 </div>
 
                 {/* Sidebar */}
-                <hr className="my-10 border border-dashed lg:block"/>
                 <aside className="relative lg:block lg:w-72 lg:ml-20 shrink-0">
                   <div>
                     <h4 className="text-lg font-bold leading-snug tracking-tight mb-4">Backlinks</h4>
@@ -73,7 +75,6 @@ function PostSingle({
                 </aside>
 
               </div>
-
               {/* Article footer */}
             </article>
 

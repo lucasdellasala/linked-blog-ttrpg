@@ -25,7 +25,7 @@ body {
   color: #0969da;
   background-color: rgb(243 250 251);
 }
-/*#110B3B, #36356E, #67264E, #9A5665, #CD9FA2*/
+
 /* Typography */
 .h1 {
     @apply text-4xl font-extrabold leading-tight tracking-tighter;

@@ -1,12 +1,14 @@
 import Link from "next/link"
 import type Author from '../../interfaces/author'
 import PostMeta from "./post-meta"
+import Status from "../../interfaces/status"
 
 type Props = {
   title: string
   date?: string
   excerpt: string
   author?: Author
+  status?: Status
   slug: string
 }
 
@@ -16,6 +18,7 @@ const PostPreview = ({
   excerpt,
   author,
   slug,
+  status,
 }: Props) => {
   return (
     <article className="flex items-center py-4 bg-x-contrast text-x-main border-x-main border-t justify-between w-full px-4">

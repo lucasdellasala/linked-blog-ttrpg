@@ -11,6 +11,7 @@ import {Element} from 'hast-util-select'
 import { renderToStaticMarkup } from "react-dom/server"
 import NotePreview from '../components/misc/note-preview'
 import { fromHtml } from 'hast-util-from-html'
+import { statusMapper } from '../pages/[...slug]'
 
 
 export async function markdownToHtml(markdown: string, currSlug: string) {
@@ -20,8 +21,8 @@ export async function markdownToHtml(markdown: string, currSlug: string) {
   const links = (getLinksMapping())[currSlug] as string[]
   const linkNodeMapping = new Map<string, Element>();
   for (const l of links) {
-    const post = getPostBySlug(l, ['title', 'content']);
-    const node = createNoteNode(post.title, post.content)
+    const post = getPostBySlug(l, ['title', 'content', 'status']);
+    const node = createNoteNode(post.title, post.content, post.status)
     linkNodeMapping[l] = node
   }
 
@@ -48,9 +49,9 @@ export function getMDExcerpt(markdown: string, length: number = 500) {
   return text.slice(0, length).trim();
 }
 
-export function createNoteNode(title: string, content: string) {
+export function createNoteNode(title: string, content: string, status: string) {
   const mdContentStr = getMDExcerpt(content);
-  const htmlStr = renderToStaticMarkup(NotePreview({ title, content: mdContentStr }))
+  const htmlStr = renderToStaticMarkup(NotePreview({ title, status: statusMapper(status), content: mdContentStr }))
   const noteNode = fromHtml(htmlStr);
   return noteNode;
 }

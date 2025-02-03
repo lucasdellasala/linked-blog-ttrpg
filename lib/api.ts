@@ -33,7 +33,7 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
 function parseFileToObj(pathToObj: string) {
   const fileContents = fs.readFileSync(pathToObj, 'utf8')
   const { data, content } = matter(fileContents)
-
+  console.log({data, content})
   data['content'] = content
 
   // modify obj

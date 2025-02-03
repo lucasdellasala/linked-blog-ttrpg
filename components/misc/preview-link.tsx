@@ -11,10 +11,11 @@ type Props = {
 
 const PreviewLink = ({ href, children }: Props) => {
   const { data } = useSWR(`/api/post-preview/${href}`, fetcher)
+  console.log({data})
   return (
     <span className="internal-link-container">
       <Link as={href} href="/[...slug]" className="internal-link">{children}</Link>
-      {data && (<NotePreview title={data.title} content={data.excerpt} />)}
+      {data && (<NotePreview title={`${data.title}${data.status}`} content={data.excerpt} />)}
     </span>
   );
 }
