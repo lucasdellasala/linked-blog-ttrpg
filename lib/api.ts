@@ -33,6 +33,13 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
         url: formatImageUrl(data[field]?.url)
       }
     }
+
+    if (field === 'ogImage' && data['ogImage']) {
+      items[field] = {
+        ...data[field],
+        url: formatImageUrl(data[field]?.url)
+      }
+    }
   })
   return items
 }
