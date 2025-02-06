@@ -54,7 +54,7 @@ export default function Post({ post, backlinks }: Props) {
             date={post.date}
             author={post.author}
             backlinks={backlinks}
-            status={post.status?.toString().toUpperCase()}
+            status={post.status?.toString()?.toUpperCase()}
             image={post.image}
           />
         </Layout>
