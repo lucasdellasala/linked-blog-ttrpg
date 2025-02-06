@@ -50,7 +50,7 @@ export function getMDExcerpt(markdown: string, length: number = 500) {
 
 export function createNoteNode(title: string, content: string, status: string) {
   const mdContentStr = getMDExcerpt(content);
-  const htmlStr = renderToStaticMarkup(NotePreview({ title, status: status.toUpperCase(), content: mdContentStr }))
+  const htmlStr = renderToStaticMarkup(NotePreview({ title, status: status?.toUpperCase(), content: mdContentStr }))
   const noteNode = fromHtml(htmlStr);
   return noteNode;
 }
