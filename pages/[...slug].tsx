@@ -54,7 +54,7 @@ export default function Post({ post, backlinks }: Props) {
             date={post.date}
             author={post.author}
             backlinks={backlinks}
-            status={statusMapper(post.status?.toString())}
+            status={post.status?.toString().toUpperCase()}
             image={post.image}
           />
         </Layout>
@@ -117,12 +117,3 @@ export async function getStaticPaths() {
   }
 }
 
-export function statusMapper(s: string): string {
-  if (!s) return "";
-  const st = s.toString().toUpperCase()
-  const statusMap: Record<string, string> = {
-    "MUERTO": '💀',
-    "HERIDO": '🤕'
-  }
-  return statusMap[st];
-}

@@ -11,7 +11,6 @@ import {Element} from 'hast-util-select'
 import { renderToStaticMarkup } from "react-dom/server"
 import NotePreview from '../components/misc/note-preview'
 import { fromHtml } from 'hast-util-from-html'
-import { statusMapper } from '../pages/[...slug]'
 
 
 export async function markdownToHtml(markdown: string, currSlug: string) {
@@ -51,7 +50,7 @@ export function getMDExcerpt(markdown: string, length: number = 500) {
 
 export function createNoteNode(title: string, content: string, status: string) {
   const mdContentStr = getMDExcerpt(content);
-  const htmlStr = renderToStaticMarkup(NotePreview({ title, status: statusMapper(status), content: mdContentStr }))
+  const htmlStr = renderToStaticMarkup(NotePreview({ title, status: status.toUpperCase(), content: mdContentStr }))
   const noteNode = fromHtml(htmlStr);
   return noteNode;
 }

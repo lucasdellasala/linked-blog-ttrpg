@@ -4,10 +4,22 @@ import DateFormatter from "../misc/date-formatter";
 type Props = {
   author?: Author;
   date?: string;
+  status?: string;
 };
 
-const PostMeta = ({ author, date }: Props) => {
+const PostMeta = ({ author, date, status }: Props) => {
   if (!(author || date)) return null;
+  // Mapeo de status a filtros de Tailwind
+  const statusFilters: Record<string, string> = {
+    muerto: "grayscale",
+    "💀": "grayscale",
+    herido: "relative after:absolute after:inset-0 after:bg-red-500 after:opacity-50 after:rounded-full",
+    "🤕": "relative after:absolute after:inset-0 after:bg-red-500 after:opacity-50 after:rounded-full",
+  };
+
+  // Clases condicionales basadas en el status
+  const imageClasses = `relative rounded-full ${status ? statusFilters[status] || "" : ""}`;
+
   return (
     <div className="flex items-center">
       {author && (
@@ -17,7 +29,7 @@ const PostMeta = ({ author, date }: Props) => {
               <span className="absolute inset-0 -m-px bg-white rounded-full"></span>
             </span>
             <img
-              className="relative rounded-full"
+              className={imageClasses}
               src={author.picture}
               width="32"
               height="32"

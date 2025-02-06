@@ -32,6 +32,19 @@ function PostSingle({
   backlinks,
   image,
 }: Props) {
+  // Mapeo de filtros según el estado
+  const statusFilters: Record<string, string> = {
+    MUERTO: "grayscale",
+    HERIDO: "bg-red-500 bg-opacity-50",
+  };
+
+  const statusEmoji: Record<string, string> = {
+    MUERTO: "💀",
+    HERIDO: "🩸",
+  };
+
+  const filterClass = status ? statusFilters[status] || "" : "";
+
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -43,17 +56,33 @@ function PostSingle({
                 {/* Title */}
                 <h1 className="h1 text-center mb-4 text-6xl">
                   {title}
-                  {status}
+                  {status && ` (${status.toLocaleLowerCase()})`}
                 </h1>
-                {
-                  image && <div className="flex justify-center">
-                    <img
-                      alt={image.alt}
-                      className="h-40 w-auto rounded-full cropped border-2"
-                      src={image.url}
-                    />
+
+                {image && (
+                  <div className="flex justify-center relative">
+                    {/* Contenedor de imagen con overlay rojo */}
+                    <div className="relative h-40 w-40 rounded-full overflow-hidden border-2">
+                      <img
+                        alt={image.alt}
+                        className={`w-full h-full object-cover ${status === 'MUERTO'? 'grayscale': ''}`}
+                        src={image.url}
+                      />
+                      {filterClass && (
+                        <div
+                          className={`absolute inset-0 ${filterClass}`}
+                        ></div>
+                      )}
+
+                    </div>
+                    {/* Emoji para el estado "HERIDO" */}
+                    {status && (
+                      <div className="absolute text-center bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/4 z-10 rounded-full p-1 bg-white h-10 w-10">
+                        <span className="text-xl z-10 ">{statusEmoji[status]}</span>
+                      </div>
+                    )}
                   </div>
-                }
+                )}
               </header>
 
               {/* Article content */}
@@ -63,7 +92,7 @@ function PostSingle({
                   {/* Article meta */}
                   {(author || date) && (
                     <>
-                      <PostMeta author={author} date={date} />
+                      <PostMeta author={author} date={date} status={status} />
                       <hr className="w-16 h-px pt-px bg-gray-200 border-0 my-6" />
                     </>
                   )}

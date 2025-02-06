@@ -1,5 +1,11 @@
 ---
 title: "Aegis"
+image:
+  url: "/attachments/aegis.png"
+  type: "portrait"
+  alt: "Retrato de Aegis"
+ogImage:
+  url: "/attachments/aegis.png"
 ---
 
 ## Descripción
